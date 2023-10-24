@@ -1,0 +1,6 @@
+<h1>Mancala Game</h1>
+<div class="board">
+  <div class="pit" *ngFor="let stones of board; let i = index">
+    <button (click)="makeMove(i)">{{ stones }}</button>
+  </div>
+</div>
