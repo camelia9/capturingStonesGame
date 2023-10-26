@@ -53,6 +53,11 @@ public class Board {
     }
 
     private static void createPitsOrder(LinkedList<SmallPit> smallPitsOne, BigPit bigPitOne, LinkedList<SmallPit> smallPitsTwo,  BigPit bigPitTwo){
+        for(int i = 0; i < smallPitsOne.size() - 2; i++){
+            smallPitsOne.get(i).setNextPit(smallPitsOne.get(i + 1));
+            smallPitsTwo.get(i).setNextPit(smallPitsTwo.get(i + 1));
+        }
+
         smallPitsOne.getLast().setNextPit(bigPitOne);
         bigPitOne.setNextPit(smallPitsTwo.getFirst());
         smallPitsTwo.getLast().setNextPit(bigPitTwo);

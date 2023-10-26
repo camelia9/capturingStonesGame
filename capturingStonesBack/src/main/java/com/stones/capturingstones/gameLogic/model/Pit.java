@@ -17,6 +17,8 @@ public abstract class Pit {
         return stones;
     }
 
+    abstract boolean isSowable(PlayerNumber player);
+
     public void sowStones(){
         this.stones += 1;
     }

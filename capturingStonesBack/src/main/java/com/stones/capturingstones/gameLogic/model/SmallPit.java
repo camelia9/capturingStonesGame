@@ -21,4 +21,8 @@ public class SmallPit extends Pit{
     public void setOppositePit(SmallPit oppositePit) {
         this.oppositePit = oppositePit;
     }
+
+    boolean isSowable(PlayerNumber player) {
+        return true;
+    }
 }

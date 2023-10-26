@@ -8,4 +8,8 @@ public class BigPit extends Pit{
     public void sowStones(int stonesToSow){
         this.stones += stonesToSow;
     }
+
+    boolean isSowable(PlayerNumber player) {
+        return player.equals(owner);
+    }
 }
