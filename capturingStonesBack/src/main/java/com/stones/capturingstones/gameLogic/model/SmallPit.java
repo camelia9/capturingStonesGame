@@ -2,8 +2,10 @@ package com.stones.capturingstones.gameLogic.model;
 
 public class SmallPit extends Pit{
 
-    public SmallPit(int stones) {
-        super(stones);
+    private SmallPit oppositePit;
+
+    public SmallPit(PlayerNumber owner, int stones) {
+        super(owner, stones);
     }
 
     public Integer collectStones() {
@@ -12,4 +14,11 @@ public class SmallPit extends Pit{
         return currentStones;
     }
 
+    public SmallPit getOppositePit() {
+        return oppositePit;
+    }
+
+    public void setOppositePit(SmallPit oppositePit) {
+        this.oppositePit = oppositePit;
+    }
 }
