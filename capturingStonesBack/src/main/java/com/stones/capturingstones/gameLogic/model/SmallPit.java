@@ -1,5 +1,7 @@
 package com.stones.capturingstones.gameLogic.model;
 
+import java.util.Optional;
+
 public class SmallPit extends Pit{
 
     private SmallPit oppositePit;
@@ -24,5 +26,10 @@ public class SmallPit extends Pit{
 
     boolean isSowable(PlayerNumber player) {
         return true;
+    }
+
+    @Override
+    public Optional<SmallPit> getOpposite() {
+        return Optional.of(oppositePit);
     }
 }

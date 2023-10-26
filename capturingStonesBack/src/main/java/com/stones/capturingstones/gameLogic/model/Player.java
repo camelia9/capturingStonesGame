@@ -31,4 +31,18 @@ public record Player(PlayerNumber number, List<SmallPit> smallPits, BigPit bigPi
         }
         return this.smallPits.get(smallPitNum - 1);
     }
+
+    public boolean complete() {
+        return smallPits.stream().allMatch(SmallPit::isEmpty);
+    }
+
+    public void finish() {
+        for (SmallPit smallPit: smallPits) {
+            bigPit.sowStones(smallPit.take());
+        }
+    }
+
+    public int score() {
+        return bigPit.getStones();
+    }
 }

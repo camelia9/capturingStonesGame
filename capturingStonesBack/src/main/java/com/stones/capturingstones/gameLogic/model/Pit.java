@@ -1,5 +1,7 @@
 package com.stones.capturingstones.gameLogic.model;
 
+import java.util.Optional;
+
 public abstract class Pit {
 
     protected int stones;
@@ -29,5 +31,24 @@ public abstract class Pit {
 
     public void setNextPit(Pit nextPit) {
         this.nextPit = nextPit;
+    }
+
+    public Optional<SmallPit> getOpposite() {
+        return Optional.empty();
+    }
+
+    public Integer capture() {
+        if (this.getOpposite().isEmpty()) {
+            return 0;
+        }
+        return this.getOpposite().get().take();
+    }
+
+    public boolean isEmpty() {
+        return this.stones == 0;
+    }
+
+    public Integer take() {
+        return 0;
     }
 }

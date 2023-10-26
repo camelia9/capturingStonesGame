@@ -26,10 +26,14 @@ public class Board {
         BigPit bigPitTwo = new BigPit(PlayerNumber.TWO);
         createPitsOrder(smallPitsOne, bigPitOne, smallPitsTwo, bigPitTwo);
 
+        Player playerOne = new Player(PlayerNumber.ONE, smallPitsOne, bigPitOne);
+        Player playerTwo = new Player(PlayerNumber.TWO, smallPitsTwo, bigPitTwo);
+
         Board board = new Board();
         board.smallPits = new ArrayList<>(smallPitsOne);
         board.smallPits.addAll(smallPitsTwo);
         board.bigPits = List.of(bigPitOne, bigPitTwo);
+        board.players = new Players(playerOne, playerTwo);
 
         return board;
     }
@@ -38,8 +42,8 @@ public class Board {
         LinkedList<SmallPit> smallPits = new LinkedList<>();
         smallPits.addLast(new SmallPit(playerNumber, stones));
         while (smallPits.size() < length) {
-            SmallPit house = new SmallPit(playerNumber, stones);
-            smallPits.addLast(house);
+            SmallPit smallPit = new SmallPit(playerNumber, stones);
+            smallPits.addLast(smallPit);
         }
         return smallPits;
     }
@@ -53,7 +57,7 @@ public class Board {
     }
 
     private static void createPitsOrder(LinkedList<SmallPit> smallPitsOne, BigPit bigPitOne, LinkedList<SmallPit> smallPitsTwo,  BigPit bigPitTwo){
-        for(int i = 0; i < smallPitsOne.size() - 2; i++){
+        for(int i = 0; i < smallPitsOne.size() - 1; i++){
             smallPitsOne.get(i).setNextPit(smallPitsOne.get(i + 1));
             smallPitsTwo.get(i).setNextPit(smallPitsTwo.get(i + 1));
         }
