@@ -1,7 +1,10 @@
 package com.stones.capturingstones.gameLogic.model;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import java.util.List;
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public record Player(PlayerNumber number, List<SmallPit> smallPits, BigPit bigPit) {
     public Pit turn(int smallPitNum){
         SmallPit smallPit = getSmallPit(smallPitNum);
@@ -44,5 +47,19 @@ public record Player(PlayerNumber number, List<SmallPit> smallPits, BigPit bigPi
 
     public int score() {
         return bigPit.getStones();
+    }
+
+    public PlayerNumber getNumber() {
+        return number;
+    }
+
+
+    public List<SmallPit> getSmallPits() {
+        return smallPits;
+    }
+
+
+    public BigPit getBigPit() {
+        return bigPit;
     }
 }

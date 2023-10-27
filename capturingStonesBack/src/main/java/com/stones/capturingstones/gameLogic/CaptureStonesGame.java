@@ -64,6 +64,18 @@ public class CaptureStonesGame {
         return Status.DRAW;
     }
 
+    public Board getBoard() {
+        return board;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
     public static void main(String[] args) {
 
         CaptureStonesGame game = CaptureStonesGame.create(Board.initialiseBoard());
