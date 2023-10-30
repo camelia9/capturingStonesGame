@@ -76,12 +76,4 @@ public class CaptureStonesGame {
         return status;
     }
 
-    public static void main(String[] args) {
-
-        CaptureStonesGame game = CaptureStonesGame.create(Board.initialiseBoard());
-        CaptureStonesGame.Result result = game.move(ONE, 5);
-        System.out.println(result.status);
-        System.out.println(result.next());
-    }
-
 }
