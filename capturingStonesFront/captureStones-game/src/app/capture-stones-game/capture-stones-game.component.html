@@ -1,6 +1,36 @@
-<h1>Mancala Game</h1>
+<h1>Capture Stones Game</h1>
+<p>Game status: {{ status }}</p>
+<p>Active player: {{player}}</p>
 <div class="board">
-  <div class="pit" *ngFor="let stones of board; let i = index">
-    <button (click)="makeMove(i)">{{ stones }}</button>
+  <div class="player">
+    <p>Player ONE:</p>
+    <div class="row">
+      <!-- Display data for Player "ONE" -->
+      <div class="pit" *ngFor="let stones of boardONE; let i = index">
+        <div class="pit" *ngIf="i != isLast">
+          <button (click)="makeMove(i + 1)">{{ stones }}</button>
+        </div>
+        <div class="pit" *ngIf="i == isLast">
+          <button [disabled]="isLast">{{ stones }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="board">
+  <div class="player">
+    <p>Player TWO:</p>
+    <div class="row">
+      <!-- Display data for Player "TWO" -->
+      <div class="pit" *ngFor="let stones of boardTWO; let i = index">
+        <div class="pit" *ngIf="i != isLast">
+          <button (click)="makeMove(i + 1)">{{ stones }}</button>
+        </div>
+        <div class="pit" *ngIf="i == isLast">
+          <button (click)="makeMove(i)" [disabled]="isLast">{{ stones }}</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
