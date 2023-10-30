@@ -10,6 +10,7 @@ public class SmallPit extends Pit{
         super(owner, stones);
     }
 
+    @Override
     public Integer collectStones() {
         int currentStones = this.stones;
         this.stones = 0;
@@ -27,6 +28,7 @@ public class SmallPit extends Pit{
     boolean isSowable(PlayerNumber player) {
         return true;
     }
+
 
     @Override
     public Optional<SmallPit> getOpposite() {

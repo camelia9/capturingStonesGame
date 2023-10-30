@@ -6,6 +6,9 @@ public class MoveRequest {
     private PlayerNumber playerNumber;
     private int smallPit;
 
+    public MoveRequest() {
+    }
+
     public MoveRequest(PlayerNumber playerNumber, int smallPit) {
         this.playerNumber = playerNumber;
         this.smallPit = smallPit;

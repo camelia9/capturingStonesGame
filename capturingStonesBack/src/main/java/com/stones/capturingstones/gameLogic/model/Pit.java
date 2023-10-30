@@ -41,14 +41,14 @@ public abstract class Pit {
         if (this.getOpposite().isEmpty()) {
             return 0;
         }
-        return this.getOpposite().get().take();
+        return this.getOpposite().get().collectStones();
     }
 
     public boolean isEmpty() {
         return this.stones == 0;
     }
 
-    public Integer take() {
+    public Integer collectStones() {
         return 0;
     }
 }

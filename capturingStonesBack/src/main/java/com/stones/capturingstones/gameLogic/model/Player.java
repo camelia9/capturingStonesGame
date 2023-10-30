@@ -1,17 +1,24 @@
 package com.stones.capturingstones.gameLogic.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.util.List;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public record Player(PlayerNumber number, List<SmallPit> smallPits, BigPit bigPit) {
+    @JsonIgnore
+    private static int id;
     public Pit turn(int smallPitNum){
         SmallPit smallPit = getSmallPit(smallPitNum);
         if(smallPit.getStones() == 0){
             throw new IllegalArgumentException("The chosen pit must contain stones!");
         }
-        return takeTurn(smallPit);
+        Pit pit = takeTurn(smallPit);
+        if (shouldCaptureOpposite(pit)) {
+            bigPit.sowStones(pit.capture());
+        }
+        return pit;
     }
 
     private Pit takeTurn(SmallPit smallPit){
@@ -23,14 +30,17 @@ public record Player(PlayerNumber number, List<SmallPit> smallPits, BigPit bigPi
                 stones -= 1;
                 pit.sowStones();
             };
-
         }
         return pit;
     }
 
+    private boolean shouldCaptureOpposite(Pit pit) {
+        return pit.getStones() == 1 && pit.isSowable(number) && pit.getOpposite().isPresent();
+    }
+
     private SmallPit getSmallPit(int smallPitNum){
         if (smallPitNum < 1 || smallPitNum > smallPits.size()) {
-            throw new IllegalArgumentException("House number must be between 1 and " + smallPits.size());
+            throw new IllegalArgumentException("Pit number must be between 1 and " + smallPits.size());
         }
         return this.smallPits.get(smallPitNum - 1);
     }
@@ -41,7 +51,7 @@ public record Player(PlayerNumber number, List<SmallPit> smallPits, BigPit bigPi
 
     public void finish() {
         for (SmallPit smallPit: smallPits) {
-            bigPit.sowStones(smallPit.take());
+            bigPit.sowStones(smallPit.collectStones());
         }
     }
 

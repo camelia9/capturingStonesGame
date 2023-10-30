@@ -24,6 +24,18 @@ public class CaptureStonesController {
         return response;
     }
 
+    @GetMapping("/player-turn")
+    public Map<String, String> getPlayerTurn() {
+        if (game == null) {
+            return Collections.singletonMap("status", "Game not started");
+        }
+
+        Map<String, String> response = new HashMap<>();
+        response.put("player", game.getPlayer().number().toString());
+
+        return response;
+    }
+
     @PostMapping("/make-move")
     public CaptureStonesGame.Result makeMove(@RequestBody MoveRequest moveRequest) {
         if (game == null) {
