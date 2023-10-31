@@ -51,23 +51,14 @@ public class CaptureStonesController {
     @GetMapping("/board-values")
     public Map<String, List<Integer>> getBoardValues() {
         if (game == null) {
-            return null; // Return an appropriate response for a game that hasn't started yet
+            return null;
         }
 
         Map<String, List<Integer>> boardValues = new HashMap<>();
-        boardValues.put(PlayerNumber.ONE.toString(), getPlayerPitValues(game.getBoard().getPlayers().player1()));
-        boardValues.put(PlayerNumber.TWO.toString(), getPlayerPitValues(game.getBoard().getPlayers().player2()));
+        boardValues.put(PlayerNumber.ONE.toString(), game.getPlayerPitValues(game.getBoard().getPlayers().player1()));
+        boardValues.put(PlayerNumber.TWO.toString(), game.getPlayerPitValues(game.getBoard().getPlayers().player2()));
 
         return boardValues;
-    }
-
-    private List<Integer> getPlayerPitValues(Player player) {
-        List<Integer> pitValues = new ArrayList<>();
-        for (SmallPit smallPit : player.getSmallPits()) {
-            pitValues.add(smallPit.getStones());
-        }
-        pitValues.add(player.getBigPit().getStones());
-        return pitValues;
     }
 
 

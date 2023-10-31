@@ -2,6 +2,9 @@ package com.stones.capturingstones.gameLogic;
 
 import com.stones.capturingstones.gameLogic.model.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.stones.capturingstones.gameLogic.model.PlayerNumber.ONE;
 
 public class CaptureStonesGame {
@@ -51,7 +54,7 @@ public class CaptureStonesGame {
         };
     }
 
-    private Status declareWinner() {
+    public Status declareWinner() {
         Board.Players players = board.getPlayers();
         int score1 = players.player1().score();
         int score2 = players.player2().score();
@@ -74,6 +77,15 @@ public class CaptureStonesGame {
 
     public Status getStatus() {
         return status;
+    }
+
+    public List<Integer> getPlayerPitValues(Player player) {
+        List<Integer> pitValues = new ArrayList<>();
+        for (SmallPit smallPit : player.getSmallPits()) {
+            pitValues.add(smallPit.getStones());
+        }
+        pitValues.add(player.getBigPit().getStones());
+        return pitValues;
     }
 
 }

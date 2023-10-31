@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import java.util.ArrayList;
 import java.util.List;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public record Player(PlayerNumber number, List<SmallPit> smallPits, BigPit bigPit) {
@@ -34,7 +35,7 @@ public record Player(PlayerNumber number, List<SmallPit> smallPits, BigPit bigPi
         return pit;
     }
 
-    private boolean shouldCaptureOpposite(Pit pit) {
+    public boolean shouldCaptureOpposite(Pit pit) {
         return pit.getStones() == 1 && pit.isSowable(number) && pit.getOpposite().isPresent();
     }
 
@@ -72,4 +73,5 @@ public record Player(PlayerNumber number, List<SmallPit> smallPits, BigPit bigPi
     public BigPit getBigPit() {
         return bigPit;
     }
+
 }

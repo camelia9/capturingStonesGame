@@ -1,30 +1,41 @@
 package com.stones.capturingstones;
 
 import com.stones.capturingstones.gameLogic.CaptureStonesGame;
-import com.stones.capturingstones.gameLogic.model.Board;
-import com.stones.capturingstones.gameLogic.model.Status;
+import com.stones.capturingstones.gameLogic.model.*;
 import org.junit.Before;
 import org.junit.Test;
 
 
-import static com.stones.capturingstones.gameLogic.model.PlayerNumber.ONE;
-import static com.stones.capturingstones.gameLogic.model.PlayerNumber.TWO;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CapturingStonesGameTests {
-    public CaptureStonesGame game;
+    private CaptureStonesGame game;
+    private Player player1;
+    private Player player2;
 
     @Before
     public void setUp() {
-        this.game = CaptureStonesGame.create(Board.initialiseBoard());
+        Board board = Board.initialiseBoard();
+        game = CaptureStonesGame.create(board);
+        player1 = board.getPlayers().player1();
+        player2 = board.getPlayers().player2();
     }
 
     @Test
-    public void testNextPlayerMove() {
-        CaptureStonesGame.Result result = this.game.move(ONE, 5);
-        assertEquals(Status.ACTIVE, result.status());
-        assertEquals(TWO, result.next());
+    public void testCreateGame() {
+        assertEquals(game.getActivePlayer(), player1);
+        assertEquals(game.getStatus(), Status.ACTIVE);
+    }
 
+    @Test
+    public void testMove() {
+        CaptureStonesGame.Result result = game.move(PlayerNumber.ONE, 1);
+        assertEquals(result.next(), PlayerNumber.ONE);
+        assertEquals(game.getActivePlayer(), player1);
+
+        result = game.move(PlayerNumber.ONE, 2);
+        assertEquals(result.next(), PlayerNumber.TWO);
+        assertEquals(game.getActivePlayer(), player2);
     }
 
 }

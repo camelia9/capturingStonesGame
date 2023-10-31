@@ -1,38 +1,36 @@
 package com.stones.capturingstones;
 
-import com.stones.capturingstones.gameLogic.CaptureStonesGame;
-import com.stones.capturingstones.gameLogic.model.BigPit;
-import com.stones.capturingstones.gameLogic.model.Pit;
-import com.stones.capturingstones.gameLogic.model.Player;
-import com.stones.capturingstones.gameLogic.model.SmallPit;
+
+import com.stones.capturingstones.gameLogic.model.*;
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Optional;
 
-import static com.stones.capturingstones.gameLogic.model.PlayerNumber.ONE;
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.Test;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 public class PlayerTest {
-    private CaptureStonesGame game;
+    private Player player;
+
+    @Before
+    public void setUp() {
+
+        player = new Player(PlayerNumber.ONE, new ArrayList<>(), new BigPit(PlayerNumber.ONE));
+    }
 
     @Test
-    void playerShouldSowSeedsOnTurn() {
-        SmallPit last = new SmallPit(ONE, 0);
-        SmallPit middle = new SmallPit(ONE,0);
-        SmallPit first = new SmallPit(ONE,2);
-        BigPit end = new BigPit(ONE);
+    public void testShouldCaptureOpposite() {
+        SmallPit pit = mock(SmallPit.class);
+        when(pit.getStones()).thenReturn(1);
+        when(pit.isSowable(PlayerNumber.ONE)).thenReturn(true);
 
-        first.setNextPit(middle);
-        middle.setNextPit(last);
-        last.setNextPit(end);
+        SmallPit oppositePit = mock(SmallPit.class);
+        when(pit.getOpposite()).thenReturn(Optional.of(oppositePit));
 
-        Player player = new Player(ONE, List.of(first, middle, last), end);
-        Pit landed = player.turn(1);
-
-        assertThat(landed).isEqualTo(last);
-        assertThat(first.getStones()).isZero();
-        assertThat(middle.getStones()).isEqualTo(1);
-        assertThat(last.getStones()).isEqualTo(1);
+        assertTrue(player.shouldCaptureOpposite(pit));
     }
+
+
 }
