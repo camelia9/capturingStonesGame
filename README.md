@@ -15,9 +15,9 @@ Versions:
   
 Start: ng serve command will start the app at port 4200
 
-Web interface:
 
-![Screenshot 2023-10-31 at 17 08 51](https://github.com/camelia9/capturingStonesGame/assets/17930848/ae2bebab-3ed4-46e3-9074-027e1c3dc816)
+Web interface:
+![Screenshot 2023-10-31 at 17 08 51](https://github.com/camelia9/capturingStonesGame/assets/17930848/de8204d6-a23c-4c31-af26-46514546114a)
 
 How to play:
 * Start the back-end and front-end components and open http://localhost:4200/ in your browser.
@@ -32,4 +32,4 @@ How to play:
 
 Components:
 
-![game drawio](https://github.com/camelia9/capturingStonesGame/assets/17930848/07219c65-a849-4adf-bbb0-e02f6714715d)
+![game drawio](https://github.com/camelia9/capturingStonesGame/assets/17930848/2bfc788a-f79f-447d-97bd-9633f5cf4c0e)
