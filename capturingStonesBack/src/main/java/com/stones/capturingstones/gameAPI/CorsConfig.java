@@ -12,7 +12,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/captureStones/**")
-                        .allowedOrigins("http://localhost:4200")
+                        .allowedOrigins("http://localhost:4200") // To allow the Angular app to make requests
                         .allowedMethods("GET", "POST"); // Add other allowed methods as needed
             }
         };
