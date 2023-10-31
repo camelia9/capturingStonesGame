@@ -1,6 +1,8 @@
 # capturingStonesGame 
 
 Back-end: Java Spring Boot application
+
+
 Versions: 
 * Spring: 3.1.5
 * Java: 17
@@ -17,6 +19,8 @@ Start: ng serve command will start the app at port 4200
 
 
 Web interface:
+
+
 ![Screenshot 2023-10-31 at 17 08 51](https://github.com/camelia9/capturingStonesGame/assets/17930848/de8204d6-a23c-4c31-af26-46514546114a)
 
 How to play:
