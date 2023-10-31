@@ -47,7 +47,8 @@ export class CaptureStonesGameComponent implements OnInit {
           // After making a move, you can fetch the updated game status
           this.fetchGameStatus();
         });
-      this.fetchBoardValues();
+      this.ngOnInit();
+      // window.ref
     }
 
   fetchBoardValues() {

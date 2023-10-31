@@ -50,7 +50,7 @@ public class Board {
 
     private static void setOpposites(LinkedList<SmallPit> smallPitsOne, LinkedList<SmallPit> smallPitsTwo){
         for(SmallPit smallPitOne: smallPitsOne){
-            SmallPit smallPitTwo = smallPitsTwo.get(smallPitsTwo.size() - smallPitsOne.indexOf(smallPitOne) - 1);
+            SmallPit smallPitTwo = smallPitsTwo.get(smallPitsOne.indexOf(smallPitOne));
             smallPitOne.setOppositePit(smallPitTwo);
             smallPitTwo.setOppositePit(smallPitOne);
         }

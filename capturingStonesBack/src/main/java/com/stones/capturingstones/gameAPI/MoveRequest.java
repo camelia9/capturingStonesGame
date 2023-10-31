@@ -1,4 +1,4 @@
-package com.stones.capturingstones.gameLogic;
+package com.stones.capturingstones.gameAPI;
 
 import com.stones.capturingstones.gameLogic.model.PlayerNumber;
 

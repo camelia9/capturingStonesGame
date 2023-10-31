@@ -1,6 +1,5 @@
 package com.stones.capturingstones.gameAPI;
 import com.stones.capturingstones.gameLogic.CaptureStonesGame;
-import com.stones.capturingstones.gameLogic.MoveRequest;
 import com.stones.capturingstones.gameLogic.model.*;
 import org.springframework.web.bind.annotation.*;
 
